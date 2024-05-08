@@ -34,7 +34,7 @@ keymap("n", "bl", ":buffers<CR>", opts)
 keymap("n", PluginToggle .. "u", ":UndotreeToggle<CR>", opts)
 keymap("n", PluginToggle .. "f", ":NERDTreeToggle<CR>", opts)
 keymap("n", PluginToggle .. "m", ":MinimapToggle<CR>", opts)
-keymap("n", "ff", ":call fzf#run({'sink':'e','source': 'find'})<CR>", opts)
+keymap("n", "<C-f>", ":call fzf#run({'sink':'e','source': 'find'})<CR>", opts)
 --keymap("n", "ff", ":Files<CR>",opts)
 keymap("n", PluginToggle .. "i", ":setl noai nocin nosi inde=<CR>", opts)
 
@@ -85,5 +85,45 @@ function PipeSelectedTextToCommandWithInput()
 	end
 end
 
+function ExpandToSelection()
+	-- Get the position of the start and end of the selection
+	local start_line = vim.fn.getpos("'<")[2]
+	local end_line = vim.fn.getpos("'>")[2]
+	local start_col = vim.fn.getpos("'<")[3]
+	local end_col = vim.fn.getpos("'>")[3]
+
+	-- Get the lines containing the selection
+	local lines = vim.api.nvim_buf_get_lines(0, start_line - 1, end_line, false)
+
+	-- If selection spans multiple lines, adjust the last line's column
+	if start_line ~= end_line then
+		end_col = #lines[#lines] + 1
+	end
+
+	-- Concatenate the lines to get the selected text
+	local selected_text = table.concat(lines, "\n"):sub(start_col, end_col)
+
+	return selected_text
+end
+
+function PrintSelected()
+	local selected_text = ExpandToSelection()
+	if selected_text then
+		print(selected_text)
+	else
+		print("No text selected")
+	end
+end
+
+function OpenFileWithSelectedText()
+	-- Get the selected text
+	local selected_text = ExpandToSelection()
+	vim.cmd("!xdg-open  '" .. selected_text .. "'")
+	-- Check the result of the command
+end
+
 vim.api.nvim_set_keymap("n", "<C-s>", ":lua RunFileType()<CR>", opts)
-vim.api.nvim_set_keymap("v", "|", ":lua PipeSelectedTextToCommandWithInput()<CR>", opts)
+
+vim.keymap.set("v", "f", ":lua OpenFileWithSelectedText()<CR>")
+vim.api.nvim_set_keymap("n", '"o', 'vi":lua OpenFileWithSelectedText()<CR>', { noremap = true })
+vim.api.nvim_set_keymap("n", "'o", "vi':lua OpenFileWithSelectedText()<CR>", { noremap = true })

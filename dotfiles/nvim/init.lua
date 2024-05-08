@@ -92,10 +92,9 @@ vim.cmd([[
 	let g:airline#extensions#tabline#enabled = 1
   	let g:airline#extensions#whitespace#enabled = 0
 	nnoremap <C-T> 0y$/\V<c-r>"<cr>
+
 	let g:tex_flavor = 'latex'
 	]])
-
-require("keymaps")
 
 -- VIM OPTIONS
 vim.g.mapleader = " "
@@ -129,13 +128,9 @@ vim.opt.hlsearch = true
 vim.opt.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
--- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
 
--- Show which line your cursor is on
 vim.opt.cursorline = true
-
--- Minimal number of screen lines to keep above and below the cursor.
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -920,3 +915,4 @@ vim.opt.linebreak = true
 
 -- Customize wrap character (e.g., ↪)
 vim.opt.showbreak = "↪ "
+require("keymaps")
