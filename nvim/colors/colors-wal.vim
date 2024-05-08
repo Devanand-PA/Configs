@@ -1,0 +1,23 @@
+" Special
+let g:wallpaper  = "/home/devanandpa/Pictures/Backgrounds/CS_icons/linux_distros/suse_extreme.jpg"
+let g:background = "#0B1107"
+let g:foreground = "#aee277"
+let g:cursor     = "#aee277"
+
+" Colors
+let g:color0  = "#0B1107"
+let g:color1  = "#48752E"
+let g:color2  = "#4A7A43"
+let g:color3  = "#558F06"
+let g:color4  = "#5B9912"
+let g:color5  = "#6AB104"
+let g:color6  = "#6FCC01"
+let g:color7  = "#aee277"
+let g:color8  = "#799e53"
+let g:color9  = "#48752E"
+let g:color10 = "#4A7A43"
+let g:color11 = "#558F06"
+let g:color12 = "#5B9912"
+let g:color13 = "#6AB104"
+let g:color14 = "#6FCC01"
+let g:color15 = "#aee277"
