@@ -115,15 +115,22 @@ function PrintSelected()
 	end
 end
 
-function OpenFileWithSelectedText()
+function OpenFileWithSelectedText(Custom_FileType)
 	-- Get the selected text
 	local selected_text = ExpandToSelection()
-	vim.cmd("!xdg-open  '" .. selected_text .. "'")
+	selected_text = vim.fn.expand(selected_text)
+	if Custom_FileType == "text" then
+		vim.cmd(":e " .. selected_text)
+	else
+		vim.cmd('!xdg-open "' .. selected_text .. '"')
+	end
 	-- Check the result of the command
 end
 
 vim.api.nvim_set_keymap("n", "<C-s>", ":lua RunFileType()<CR>", opts)
 
 vim.keymap.set("v", "f", ":lua OpenFileWithSelectedText()<CR>")
-vim.api.nvim_set_keymap("n", '"o', 'vi":lua OpenFileWithSelectedText()<CR>', { noremap = true })
-vim.api.nvim_set_keymap("n", "'o", "vi':lua OpenFileWithSelectedText()<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", '"o', 'vi":lua OpenFileWithSelectedText("")<CR>', { noremap = true })
+vim.api.nvim_set_keymap("n", '"e', 'vi":lua OpenFileWithSelectedText("text")<CR>', { noremap = true })
+vim.api.nvim_set_keymap("n", "'o", "vi':lua OpenFileWithSelectedText('')<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "'e", "vi':lua OpenFileWithSelectedText('text')<CR>", { noremap = true })
