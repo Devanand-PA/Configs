@@ -115,22 +115,53 @@ function PrintSelected()
 	end
 end
 
-function OpenFileWithSelectedText(Custom_FileType)
+local function is_text_file(filepath)
+	-- Extract the file extension
+	local ext = string.match(filepath, "%.([^%.]+)$")
+
+	-- List of common text file extensions
+	local text_extensions = {
+		"txt",
+		"md",
+		"markdown",
+		"lua",
+		"c",
+		"cpp",
+		"h",
+		"hpp",
+		"py",
+		"rb",
+		"sh",
+		"html",
+		"css",
+		"js",
+		"json",
+		-- Add more extensions as needed
+	}
+
+	-- Check if the extension is in the list of text file extensions
+	for _, text_ext in ipairs(text_extensions) do
+		if ext == text_ext then
+			return true -- File is a text file
+		end
+	end
+
+	return false -- File is not a text file
+end
+
+function OpenFileWithSelectedText()
 	-- Get the selected text
 	local selected_text = ExpandToSelection()
 	selected_text = vim.fn.expand(selected_text)
-	if Custom_FileType == "text" then
+	if is_text_file(selected_text) then
 		vim.cmd(":e " .. selected_text)
 	else
 		vim.cmd('!xdg-open "' .. selected_text .. '"')
-	end
-	-- Check the result of the command
+	end -- Check the result of the command
 end
 
 vim.api.nvim_set_keymap("n", "<C-s>", ":lua RunFileType()<CR>", opts)
 
 vim.keymap.set("v", "f", ":lua OpenFileWithSelectedText()<CR>")
-vim.api.nvim_set_keymap("n", '"o', 'vi":lua OpenFileWithSelectedText("")<CR>', { noremap = true })
-vim.api.nvim_set_keymap("n", '"e', 'vi":lua OpenFileWithSelectedText("text")<CR>', { noremap = true })
-vim.api.nvim_set_keymap("n", "'o", "vi':lua OpenFileWithSelectedText('')<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "'e", "vi':lua OpenFileWithSelectedText('text')<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", '"o', 'vi":lua OpenFileWithSelectedText()<CR>', { noremap = true })
+vim.api.nvim_set_keymap("n", "'o", "vi':lua OpenFileWithSelectedText()<CR>", { noremap = true })
