@@ -12,6 +12,7 @@ vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagn
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
+keymap("n", "rf", ":r !find | dmenu -i -l 40<CR>", opts)
 keymap("n", "qr", "q", opts)
 keymap("n", "q", "", opts)
 keymap("n", "qa", ":qa!<CR>", opts)

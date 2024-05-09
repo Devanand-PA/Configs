@@ -1,0 +1,5 @@
+#!/bin/python3
+import sys
+import subprocess
+ARG=sys.argv[1]
+subprocess.run(['xdg-open',ARG])
