@@ -157,12 +157,12 @@ function OpenFileWithSelectedText()
 	if is_text_file(selected_text) then
 		vim.cmd(":e " .. selected_text)
 	else
-		vim.cmd('!xdg-open "' .. selected_text .. '"')
+		vim.cmd('!xdg-open "' .. selected_text .. '" &')
 	end -- Check the result of the command
 end
 
 vim.api.nvim_set_keymap("n", "<C-s>", ":lua RunFileType()<CR>", opts)
 
 vim.keymap.set("v", "f", ":lua OpenFileWithSelectedText()<CR>")
-vim.api.nvim_set_keymap("n", '"o', 'vi":lua OpenFileWithSelectedText()<CR>', { noremap = true })
-vim.api.nvim_set_keymap("n", "'o", "vi':lua OpenFileWithSelectedText()<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", '"o', 'vi":lua OpenFileWithSelectedText()<CR><C-l>', { noremap = true })
+vim.api.nvim_set_keymap("n", "'o", "vi':lua OpenFileWithSelectedText()<CR><C-l>", { noremap = true })
