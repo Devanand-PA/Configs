@@ -1,0 +1,2 @@
+ACTION=="add", SUBSYSTEM=="backlight", RUN+="bright-helper video g+w /sys/class/backlight/%k/brightness"
+ACTION=="add", SUBSYSTEM=="leds",      RUN+="bright-helper input g+w /sys/class/leds/%k/brightness"
