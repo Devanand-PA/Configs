@@ -98,6 +98,7 @@ vim.opt.ignorecase = true
 vim.g.maplocalleader = " "
 vim.opt.number = true
 vim.opt.mouse = ""
+vim.opt.titlestring = "%F"
 vim.opt.title = true
 vim.opt.showmode = false
 vim.opt.hidden = true
@@ -666,9 +667,6 @@ require("lazy").setup({
 							show_filename_only = false,
 						},
 					},
-					lualine_x = {},
-					lualine_b = {},
-					lualine_y = {},
 					lualine_z = { "tabs" },
 				},
 				sections = {
