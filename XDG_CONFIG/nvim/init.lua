@@ -88,24 +88,20 @@ P.S. You can delete this when you're done too. It's your config now! :)
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 
-vim.cmd([[
-	let g:airline#extensions#tabline#enabled = 1
-  	let g:airline#extensions#whitespace#enabled = 0
-	nnoremap <C-T> 0y$/\V<c-r>"<cr>
-
-	let g:tex_flavor = 'latex'
-	]])
-
 -- VIM OPTIONS
+vim.g.texflavour = "latex"
 vim.g.mapleader = " "
+vim.g.airline_theme = "base16_bespin"
+vim.opt.ignorecase = true
+
 -- vim.opt.termguicolors=true
 vim.g.maplocalleader = " "
 vim.opt.number = true
--- vim.opt.mouse = 'a'
+vim.opt.mouse = ""
+vim.opt.title = true
 vim.opt.showmode = false
 vim.opt.hidden = true
 vim.opt.clipboard = "unnamedplus"
-vim.cmd.colorscheme("PaperColor")
 vim.opt.breakindent = true
 vim.opt.spell = true
 vim.opt.undofile = true
@@ -641,11 +637,43 @@ require("lazy").setup({
 
 	-- Plugins
 
-	"vim-airline/vim-airline",
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			require("lualine").setup({
+				options = { icons_enabled = true, theme = "codedark" },
 
-	"junegunn/fzf",
-	"junegunn/fzf.vim",
+				refresh = { -- sets how often lualine should refresh it's contents (in ms)
+					statusline = 1000, -- The refresh option sets minimum time that lualine tries
+					tabline = 1000, -- to maintain between refresh. It's not guarantied if situation
+					winbar = 1000, -- arises that lualine needs to refresh itself before this time
+					-- it'll do it.
 
+					-- Also you can force lualine's refresh by calling refresh function
+					-- like require('lualine').refresh()
+				},
+
+				-- TABLINE
+				tabline = {
+					lualine_a = {
+						{
+							"buffers",
+							symbols = {
+								modified = " ●", -- Text to show when the buffer is modified
+								alternate_file = "", -- Text to show to identify the alternate file
+								directory = "", -- Text to show when the buffer is a directory
+							},
+						},
+					},
+					lualine_b = { "require'lsp-status'.status()" },
+					lualine_c = {},
+					lualine_x = {},
+					lualine_y = {},
+				},
+			})
+		end,
+	},
 	"preservim/nerdtree",
 	"mbbill/undotree",
 	{ -- Autocompletion
