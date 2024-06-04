@@ -643,7 +643,6 @@ require("lazy").setup({
 		config = function()
 			require("lualine").setup({
 				options = { icons_enabled = true, theme = "codedark" },
-
 				refresh = { -- sets how often lualine should refresh it's contents (in ms)
 					statusline = 1000, -- The refresh option sets minimum time that lualine tries
 					tabline = 1000, -- to maintain between refresh. It's not guarantied if situation
@@ -664,12 +663,16 @@ require("lazy").setup({
 								alternate_file = "", -- Text to show to identify the alternate file
 								directory = "", -- Text to show when the buffer is a directory
 							},
+							show_filename_only = false,
 						},
 					},
-					lualine_b = { "require'lsp-status'.status()" },
-					lualine_c = {},
 					lualine_x = {},
+					lualine_b = {},
 					lualine_y = {},
+					lualine_z = { "tabs" },
+				},
+				sections = {
+					lualine_c = { { "filename", path = 3 } },
 				},
 			})
 		end,
