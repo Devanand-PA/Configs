@@ -98,7 +98,8 @@ vim.opt.ignorecase = true
 vim.g.maplocalleader = " "
 vim.opt.number = true
 vim.opt.mouse = ""
-vim.opt.titlestring = "%F"
+--vim.opt.titlestring = "%f"
+vim.opt.titlestring = "%{$PWD}$ %f"
 vim.opt.title = true
 vim.opt.showmode = false
 vim.opt.hidden = true
@@ -154,10 +155,10 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
-vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
-vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
-vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
-vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+-- vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
+-- vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
+-- vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
+-- vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -637,13 +638,16 @@ require("lazy").setup({
 	},
 
 	-- Plugins
-
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
 			require("lualine").setup({
-				options = { icons_enabled = true, theme = "codedark" },
+				options = {
+					icons_enabled = true,
+					-- theme = "catppuccin",
+					-- theme = "tokyonight"
+				},
 				refresh = { -- sets how often lualine should refresh it's contents (in ms)
 					statusline = 1000, -- The refresh option sets minimum time that lualine tries
 					tabline = 1000, -- to maintain between refresh. It's not guarantied if situation
@@ -653,7 +657,6 @@ require("lazy").setup({
 					-- Also you can force lualine's refresh by calling refresh function
 					-- like require('lualine').refresh()
 				},
-
 				-- TABLINE
 				tabline = {
 					lualine_a = {
@@ -665,6 +668,7 @@ require("lazy").setup({
 								directory = "", -- Text to show when the buffer is a directory
 							},
 							show_filename_only = false,
+							mode = 4,
 						},
 					},
 					lualine_z = { "tabs" },
@@ -787,7 +791,6 @@ require("lazy").setup({
 			})
 		end,
 	},
-
 	{ -- You can easily change to a different colorscheme.
 		-- Change the name of the colorscheme plugin below, and then
 		-- change the command in the config to whatever the name of that colorscheme is.
@@ -799,7 +802,7 @@ require("lazy").setup({
 			-- Load the colorscheme here.
 			-- Like many other themes, this one has different styles, and you could load
 			-- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-			vim.cmd.colorscheme("tokyonight-night")
+			vim.cmd.colorscheme("catppuccin_custombg")
 
 			-- You can configure highlights by doing something like:
 			vim.cmd.hi("Comment gui=none")
