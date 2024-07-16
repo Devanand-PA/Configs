@@ -645,6 +645,7 @@ require("lazy").setup({
 			require("lualine").setup({
 				options = {
 					icons_enabled = true,
+					theme = "codedark",
 					-- theme = "catppuccin",
 					-- theme = "tokyonight"
 				},
