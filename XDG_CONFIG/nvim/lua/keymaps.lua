@@ -186,7 +186,7 @@ end
 vim.api.nvim_set_keymap("n", "<C-s>", ":lua RunFileType()<CR>", opts)
 
 vim.keymap.set("v", "f", ":lua OpenFileWithSelectedText()<CR>")
-vim.keymap.set("n", "|", ":lua PipetoCommand()<CR>")
+vim.keymap.set("v", "|", ":lua PipetoCommand()<CR>")
 vim.api.nvim_set_keymap("n", '"o', 'vi":lua OpenFileWithSelectedText()<CR><C-l>', { noremap = true })
 vim.api.nvim_set_keymap("n", "'o", "vi':lua OpenFileWithSelectedText()<CR><C-l>", { noremap = true })
 vim.api.nvim_set_keymap("n", ")o", "vi):lua OpenFileWithSelectedText()<CR><C-l>", { noremap = true })
