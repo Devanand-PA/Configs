@@ -157,21 +157,6 @@ local function is_text_file(filepath)
 	return false -- File is not a text file
 end
 
-function PipetoCommand()
-	local selected_text = ExpandToSelection()
-	local command = vim.fn.input("Enter your command: ")
-
-	local result = vim.fn.system(command, selected_text)
-	result = result:sub(1, -2)
-	if vim.v.shell_error ~= 0 then
-		print("Error running command: " .. command)
-		return
-	end
-
-	-- Replace the selected text with the command output
-	vim.fn.setline(vim.fn.line("."), result)
-end
-
 function OpenFileWithSelectedText()
 	-- Get the selected text
 	local selected_text = ExpandToSelection()
@@ -186,7 +171,6 @@ end
 vim.api.nvim_set_keymap("n", "<C-s>", ":lua RunFileType()<CR>", opts)
 
 vim.keymap.set("v", "f", ":lua OpenFileWithSelectedText()<CR>")
-vim.keymap.set("v", "|", ":lua PipetoCommand()<CR>")
 vim.api.nvim_set_keymap("n", '"o', 'vi":lua OpenFileWithSelectedText()<CR><C-l>', { noremap = true })
 vim.api.nvim_set_keymap("n", "'o", "vi':lua OpenFileWithSelectedText()<CR><C-l>", { noremap = true })
 vim.api.nvim_set_keymap("n", ")o", "vi):lua OpenFileWithSelectedText()<CR><C-l>", { noremap = true })
