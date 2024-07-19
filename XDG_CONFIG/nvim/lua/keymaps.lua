@@ -169,6 +169,7 @@ function OpenFileWithSelectedText()
 end
 
 vim.api.nvim_set_keymap("n", "<C-s>", ":lua RunFileType()<CR>", opts)
+vim.api.nvim_set_keymap("v", "|", ":!", opts)
 
 vim.keymap.set("v", "f", ":lua OpenFileWithSelectedText()<CR>")
 vim.api.nvim_set_keymap("n", '"o', 'vi":lua OpenFileWithSelectedText()<CR><C-l>', { noremap = true })

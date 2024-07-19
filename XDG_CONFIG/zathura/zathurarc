@@ -1,4 +1,4 @@
 set guioptions none
 include colors
-set recolor
+#set recolor
 set window-title-basename
