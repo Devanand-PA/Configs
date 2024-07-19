@@ -82,6 +82,10 @@ require("lazy").setup({
 		},
 	},
 
+	--[fzf]--
+	{ "junegunn/fzf", build = "./install --bin" },
+	{ "junegunn/fzf.vim" },
+
 	{ -- LSP Configuration & Plugins
 		"neovim/nvim-lspconfig",
 		dependencies = {
@@ -568,3 +572,4 @@ vim.opt.linebreak = true
 -- Customize wrap character (e.g., ↪)
 vim.opt.showbreak = "↪ "
 require("keymaps")
+vim.cmd("source ./other_stuff.vim")
