@@ -1,0 +1,8 @@
+[global]
+	font = JetBrains Mono 15
+	progress_bar_corner_radius = 20
+	transparency = 10
+	sticky_history = yes
+	timeout = 1
+	corner_radius = 20
+

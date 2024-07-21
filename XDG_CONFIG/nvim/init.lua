@@ -572,4 +572,4 @@ vim.opt.linebreak = true
 -- Customize wrap character (e.g., ↪)
 vim.opt.showbreak = "↪ "
 require("keymaps")
-vim.cmd("source ./other_stuff.vim")
+vim.cmd("source ~/.config/nvim/other_stuff.vim")
