@@ -164,9 +164,31 @@ function OpenFileWithSelectedText()
 		vim.cmd('!xdg-open "' .. selected_text .. '" &')
 	end -- Check the result of the command
 end
+function PipeSelectedTextToCommandWithInput()
+	-- Prompt the user for a command
+	local command = vim.fn.input("Enter command: ")
+
+	if command ~= "" then
+		-- Save the current buffer and window state
+		local bufnr = vim.api.nvim_get_current_buf()
+		local winnr = vim.api.nvim_get_current_win()
+
+		-- Get the selected text
+		local selected_text = vim.api.nvim_buf_get_lines(bufnr, vim.fn.line("'<") - 1, vim.fn.line("'>"), false)
+
+		-- Execute the command with the selected text as input
+		local output = vim.fn.systemlist(command, selected_text)
+
+		-- Replace the selected text with the output
+		vim.api.nvim_buf_set_lines(bufnr, vim.fn.line("'<") - 1, vim.fn.line("'>"), false, output)
+
+		-- Restore the cursor position
+		vim.api.nvim_set_current_win(winnr)
+	end
+end
 
 vim.api.nvim_set_keymap("n", "<C-s>", ":lua RunFileType()<CR>", opts)
-vim.api.nvim_set_keymap("v", "|", ":!", opts)
+vim.api.nvim_set_keymap("v", "|", ":lua PipeSelectedTextToCommandWithInput()<CR>", opts)
 
 vim.keymap.set("v", "f", ":lua OpenFileWithSelectedText()<CR>")
 vim.api.nvim_set_keymap("n", '"o', 'vi":lua OpenFileWithSelectedText()<CR><C-l>', { noremap = true })
