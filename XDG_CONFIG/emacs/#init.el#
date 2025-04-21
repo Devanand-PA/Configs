@@ -90,20 +90,7 @@
 
 
 ;; Org mode
-;; -*- mode: elisp -*-
 
-;; Disable the splash screen (to enable it agin, replace the t with 0)
-(setq inhibit-splash-screen t)
-
-;; Enable transient mark mode
-(transient-mark-mode 1)
-
-;;;;Org mode configuration
-;; Enable Org mode
-(require 'org)
-;; Make Org mode work with files ending in .org
-;; (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-;; The above is the default in recent emacsen
 (setq org-startup-latex-preview t)
 
 (setq org-startup-with-inline-images t)
@@ -258,7 +245,7 @@
 
 (setq dashboard-banner-logo-title "Emacs") ; Set the title
 
-(setq dashboard-items '((recents . 10)))     ; Configure to show only 5 recent files
+(setq dashboard-items '((recents . 5)))     ; Configure to show only 5 recent files
 
 (dashboard-setup-startup-hook)             ; Enable dashboard on startup
 
@@ -318,13 +305,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (define-key evil-normal-state-map (kbd "C-;") 'dashboard-open)
-(define-key evil-normal-state-map (kbd "<S-right>") 'switch-to-next-buffer)
-(define-key evil-normal-state-map (kbd "<S-left>") 'switch-to-prev-buffer)
+(define-key evil-normal-state-map (kbd "S-Right") 'switch-to-next-buffer)
+(define-key evil-normal-state-map (kbd "S-Left") 'switch-to-next-buffer)
 
-(define-key evil-normal-state-map (kbd "w <left>") 'evil-window-left)
-(define-key evil-normal-state-map (kbd "w <right>") 'evil-window-right)
-(define-key evil-normal-state-map (kbd "w <up>") 'evil-window-up)
-(define-key evil-normal-state-map (kbd "w <down>") 'evil-window-down)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

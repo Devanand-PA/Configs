@@ -321,10 +321,7 @@
 (define-key evil-normal-state-map (kbd "<S-right>") 'switch-to-next-buffer)
 (define-key evil-normal-state-map (kbd "<S-left>") 'switch-to-prev-buffer)
 
-(define-key evil-normal-state-map (kbd "w <left>") 'evil-window-left)
-(define-key evil-normal-state-map (kbd "w <right>") 'evil-window-right)
-(define-key evil-normal-state-map (kbd "w <up>") 'evil-window-up)
-(define-key evil-normal-state-map (kbd "w <down>") 'evil-window-down)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
