@@ -1,8 +1,8 @@
 * {
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: JetBrainsMono;
-    font-size: 16px;
-    border-radius : 16px;
+    font-family: JetBrains Mono;
+    font-size: 14px;
+    border-radius : 20px;
 }
 window#waybar {
     background-color: rgba(20, 20, 20, 0.9);
