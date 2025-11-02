@@ -1,20 +1,20 @@
 * {
     /* `otf-font-awesome` is required to be installed for icons */
     font-family: JetBrainsMono;
-    padding: 1px 2px;
-    font-size: 15px;
-    border-radius : 20px;
+    font-size: 16px;
+    border-radius : 16px;
 }
 window#waybar {
-    background-color: rgba(35, 35, 35, 0);
+    background-color: rgba(20, 20, 20, 0.9);
     color: #ffffff;
     transition-property: background-color;
     transition-duration: .5s;
-    /* border: 1px solid rgba(100, 114, 125, 0.5); */
+    border: 1px solid rgba(100, 114, 125, 0.5);
 }
 
 #taskbar button.active {
 	border-bottom: 3px solid white;
+    font-size: 18px;
     background-color : rgba(90,150,90,0.8);
 }
 tooltip {
@@ -33,7 +33,7 @@ window#waybar.hidden {
 #group1 {
 
     color: #aaaaaa;
-  border: 2px solid rgba(155, 155, 155, 1);
+  /* border: 2px solid rgba(155, 155, 155, 1); */
     background-color: rgba(0, 0, 0, 0.8);
     border-radius:20;
 }
@@ -78,7 +78,7 @@ button:hover {
   border: 2px solid rgba(0, 0, 0, 1);
     background-color: #000000;
     box-shadow: inset 0 -3px #ffffff;
-    padding: 0 5px;
+    padding: 1px 3px;
     color: #eeeeee;
     opacity:0.8;
 }
@@ -293,19 +293,19 @@ label:focus {
 }
 
 window#waybar.empty #window{
-        padding :  0px 0px;
+        padding: 2px 1;
+
   background-color: rgba(0,0,0,0); /* color when no window */
-      border: 0px;
+      border: 1px;
 }
 
 
 #window {
-  border: 3px solid rgba(15, 15, 15, 1);
+/* border: 1px solid rgba(15, 200, 15, 1); */
     background-color : rgba(90,150,90,0.8);
+    padding : 1px;
     color: #000000;
     font-weight: bold;
-    font-style : italic;
-    padding :  1px 6px;
     border-radius: 20;
 }
 
