@@ -10,7 +10,8 @@
         "hyprland/workspaces",
         "hyprland/mode",
         "custom/media",
-        "hyprland/window"
+        "group/group1"
+        //"hyprland/window",
     ],
     "modules-center": [
         "clock",
@@ -19,7 +20,6 @@
         //"mpd",
         "mpris",
         // "idle_inhibitor",
-        "pulseaudio",
         //"network",
         // "power-profiles-daemon",
         // "cpu",
@@ -28,9 +28,8 @@
         // "backlight",
         // "keyboard-state",
         // "hyprland/language",
-        "battery",
+        "group/group3"
         // "battery#bat2",
-        "tray"
         // "custom/power"
     ],
     // Modules configuration
@@ -160,7 +159,8 @@
     "backlight": {
         // "device": "acpi_video1",
         "format": "{percent}% {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "on-click" : "ddcutil -d 1 setvcp 10 $(: | rofi -dmenu -p 'Set brightness')"
     },
     "battery": {
         "states": {
@@ -219,7 +219,7 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click": "pavucontrol"
+        "on-click": "select_pulse_source"
     },
     "custom/media": {
         "format": "{icon} {text}",
@@ -232,6 +232,45 @@
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    },
+
+    "wlr/taskbar": {
+        "format": "{icon} {title:.17}",
+        "icon-size": 28,
+        "spacing": 3,
+        "on-click-middle": "close",
+        "tooltip-format": "{title}",
+        "ignore-list": [],
+        "on-click": "activate"
+    },
+
+"custom/brightness": {
+        "exec": "~/.config/waybar/scripts/brightness.sh",
+        "interval": 5,
+        "format": "{}",
+        "tooltip": false,
+        "on-scroll-up": "ddcutil setvcp 10 + 10",  // Forces refresh
+        "on-scroll-down": "ddcutil setvcp 10 - 10" // Forces refresh
+    },
+
+
+     "group/group3": {
+        "orientation": "horizontal",
+        "modules": ["pulseaudio","custom/brightness","battery","tray"]
+    },
+
+     "group/group1": {
+        "orientation": "horizontal",
+        "modules": ["wlr/taskbar","hyprland/window"]
+    },
+    "wlr/taskbar": {
+      "format": "{icon}",
+      "icon-size": 24,
+      "spacing": 1,
+      "on-click-middle": "close",
+      "tooltip-format": "{title}",
+      "ignore-list": [],
+      "on-click": "activate"
     },
 
     "custom/power": {
