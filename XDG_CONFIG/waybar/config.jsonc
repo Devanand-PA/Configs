@@ -14,7 +14,7 @@
         //"hyprland/window",
     ],
     "modules-center": [
-        "clock",
+        "group/group2"
     ],
     "modules-right": [
         //"mpd",
@@ -265,6 +265,13 @@
         "orientation": "horizontal",
         "modules": ["wlr/taskbar","hyprland/window"]
     },
+
+     "group/group2": {
+        "orientation": "horizontal",
+        "modules": ["clock"]
+    },
+
+
     "wlr/taskbar": {
       "format": "{icon}",
       "icon-size": 20,

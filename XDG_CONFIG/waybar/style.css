@@ -35,9 +35,18 @@ window#waybar.hidden {
     color: #aaaaaa;
   /* border: 2px solid rgba(155, 155, 155, 1); */
     background-color: rgba(0, 0, 0, 0.8);
-    border-radius:20;
+    border-radius:20px;
 }
 
+
+#group2
+/* { */
+/**/
+/*     color: #aaaaaa; */
+   /* border: 2px solid rgba(155, 155, 155, 1); */ 
+/*     background-color: rgba(0, 0, 0, 0.8); */
+/*     border-radius:20px; */
+/* } */
 /*
 window#waybar.empty {
     background-color: transparent;
@@ -293,7 +302,7 @@ label:focus {
 }
 
 window#waybar.empty #window{
-        padding: 2px 1;
+        padding: 2px 1px;
 
   background-color: rgba(0,0,0,0); /* color when no window */
       border: 1px;
@@ -301,12 +310,11 @@ window#waybar.empty #window{
 
 
 #window {
-/* border: 1px solid rgba(15, 200, 15, 1); */
+    border: 4px solid rgba(20,20,20, 1); 
     background-color : rgba(90,150,90,0.8);
-    padding : 1px;
     color: #000000;
     font-weight: bold;
-    border-radius: 20;
+    border-radius: 20px;
 }
 
 #custom-brightness {
@@ -323,7 +331,7 @@ window#waybar.empty #window{
     color: #aaaaaa;
   border: 2px solid rgba(155, 155, 155, 1);
     background-color: rgba(0, 0, 0, 0.8);
-    border-radius:20;
+    border-radius:20px;
 
 }
 
@@ -351,7 +359,7 @@ window#waybar.empty #window{
 #mpris {
     background-color: #994444;
   border: 2px solid rgba(255, 255, 255, 1);
-    border-radius : 20;
+    border-radius : 20px;
 }
 
 #mpris.paused {
