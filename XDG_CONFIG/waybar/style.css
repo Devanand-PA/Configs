@@ -4,6 +4,12 @@
     font-size: 14px;
     border-radius : 20px;
 }
+
+window#waybar:not(.empty) {
+    background-color: rgba(20, 20, 20, 0.9); /* Add some transparency */
+    /* You can add other styles here too */
+}
+
 window#waybar {
     background-color: rgba(20, 20, 20, 0);
     color: #ffffff;
