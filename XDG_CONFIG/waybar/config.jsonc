@@ -141,7 +141,8 @@
         // "timezone": "America/New_York",
         "format" : "    {:%a %d %b %I:%M %p}    ",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        // "format-alt": "{:%Y-%m-%d}"`
+        "on-click" : "cat .common_commands | head -1 | sh"
     },
     "cpu": {
         "format": "{usage}% ",
