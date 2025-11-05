@@ -77,16 +77,16 @@
         // "player":
 		// "ignored-players":
 		// "interval":
-		"format": "  {title} - {artist}",
-		"format-paused": "  {title} - {artist}",
-		"tooltip-format": "Playing: {title} - {artist}",
-		"tooltip-format-paused": "Paused: {title} - {artist}",
+		"format": "  {title} - {artist}  ",
+		"format-paused": "  {title} - {artist}  ",
+		"tooltip-format": "Playing: {title} - {artist} ",
+		"tooltip-format-paused": "Paused: {title} - {artist} ",
                 "on-scroll-down" : "playerctl next",
                 "on-scroll-up" : "playerctl previous",
 		// "enable-tooltip-len-limits":
 		// "on-click":
 		// "on-click-middle":
-		"on-click-right": "hello",
+		"on-click-right": "focus-mpris",
 		// "dynamic-order":
 		// "dynamic-len":
 		// "dynamic-separator":
