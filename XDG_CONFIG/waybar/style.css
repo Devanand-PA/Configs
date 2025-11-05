@@ -6,7 +6,7 @@
 }
 
 window#waybar:not(.empty) {
-    background-color: rgba(30, 30, 30, 0); /* Add some transparency */
+    background-color: rgba(30, 30, 30, 0.4); /* Add some transparency */
     border-radius : 0px;
     /* You can add other styles here too */
 }
