@@ -259,7 +259,7 @@
 
      "group/group3": {
         "orientation": "horizontal",
-        "modules": ["pulseaudio","custom/brightness","battery","tray"]
+        "modules": ["pulseaudio","backlight","battery","tray"]
     },
 
      "group/group1": {

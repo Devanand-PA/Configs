@@ -1,0 +1,34 @@
+[general]
+import = [
+    "~/.config/alacritty/themes/themes/dark_plus.toml"
+]
+
+[env]
+TERM = "alacritty"
+
+[font]
+size = 14.0
+
+[font.bold]
+family = "Adwaita Mono"
+
+[font.bold_italic]
+family = "Adwaita Mono"
+
+[font.italic]
+family = "Adwaita Mono"
+
+[font.normal]
+family = "Adwaita Mono"
+
+[scrolling]
+history = 10000
+
+[window]
+dynamic_title = true
+opacity = 1
+title = "Alacritty"
+
+[window.padding]
+x = 10
+y = 10
