@@ -27,14 +27,12 @@ vim.opt.signcolumn = "yes"      -- Reserves space for symbols, preventing text f
 -------------------------
 -------------------------
 
-
 -------------------------
 --- [Split Behaviour] ----
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 -------------------------
 -------------------------
-
 
 -------------------------
 --- [Keymaps] ------------
@@ -70,15 +68,8 @@ keymap("n", "w<Down>", "<C-w><Down>", opts)
 
 -------------------------
 --- [Mason Setup] --------
-require("mason").setup({
-  ui = { border = "rounded" },
-})
-
-require("mason-lspconfig").setup({
-  -- Add/remove servers here. Mason will auto-install them.
-  ensure_installed = { "lua_ls", "pyright", "ts_ls" },
-  automatic_installation = true,
-})
+require("mason").setup()
+require("mason-lspconfig").setup()
 -------------------------
 -------------------------
 
@@ -138,17 +129,8 @@ cmp.setup({
 local lspconfig = require("lspconfig")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-local servers = { "pyright", "stylua", "typescript-language-server", "lua-language-server", "bash-language-server" }
 
 
-for _, server in ipairs(servers) do
-  vim.lsp.config(server, {
-    capabilities = capabilities,
-    on_attach = on_attach,
-  })
-
-  vim.lsp.enable(server)
-end
 
 
 -- Shared on_attach: runs whenever an LSP attaches to a buffer
