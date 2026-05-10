@@ -15,7 +15,7 @@ homedir = os.getenv("HOME")
 
 -------------------------
 --- [Visual Aids] --------
---- vim.opt.number = true
+vim.opt.number = true
 vim.opt.list = true -- symbols displayed during linewraps, tab, etc
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.opt.showbreak = "↪ "
@@ -38,6 +38,8 @@ vim.opt.splitbelow = true
 
 -------------------------
 --- [Keymaps] ------------
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 local opts = { noremap = true, silent = true }
 local keymap = vim.api.nvim_set_keymap
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>") -- remove search highlights
@@ -65,36 +67,114 @@ keymap("n", "w<Down>", "<C-w><Down>", opts)
 -------------------------
 -------------------------
 
+
 -------------------------
------[Autocomplete] -----
--- Completion sources (current buffer + other buffers)
-vim.opt.complete = { ".", "b" }
+--- [Mason Setup] --------
+require("mason").setup({
+  ui = { border = "rounded" },
+})
 
--- Make popup behave like autocomplete
-vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
+require("mason-lspconfig").setup({
+  -- Add/remove servers here. Mason will auto-install them.
+  ensure_installed = { "lua_ls", "pyright", "ts_ls" },
+  automatic_installation = true,
+})
+-------------------------
+-------------------------
 
--- Auto-trigger completion while typing
-vim.api.nvim_create_autocmd("TextChangedI", {
-  callback = function()
-    -- Don't trigger inside completion already
-    if vim.fn.pumvisible() == 0 then
-      -- Get current line and cursor position
-      local col = vim.fn.col(".") - 1
-      if col > 0 then
-        local line = vim.fn.getline(".")
-        local char_before = line:sub(col, col)
 
-        -- Trigger only if previous character is part of a word
-        if char_before:match("%w") then
-          vim.api.nvim_feedkeys(
-            vim.api.nvim_replace_termcodes("<C-n>", true, false, true),
-            "n",
-            true
-          )
-        end
+-------------------------
+--- [Autocompletion] -----
+local cmp = require("cmp")
+local luasnip = require("luasnip")
+
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end,
+  },
+  mapping = cmp.mapping.preset.insert({
+    ["<C-Space>"] = cmp.mapping.complete(),         -- trigger completion
+    ["<CR>"]      = cmp.mapping.confirm({ select = true }), -- confirm selection
+    ["<Tab>"]     = cmp.mapping(function(fallback)  -- next item / expand snippet
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      else
+        fallback()
       end
-    end
-  end,
+    end, { "i", "s" }),
+    ["<S-Tab>"]   = cmp.mapping(function(fallback)  -- previous item
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+    ["<C-e>"]     = cmp.mapping.abort(),            -- close completion
+    ["<C-d>"]     = cmp.mapping.scroll_docs(4),     -- scroll docs down
+    ["<C-u>"]     = cmp.mapping.scroll_docs(-4),    -- scroll docs up
+  }),
+  sources = cmp.config.sources({
+    { name = "nvim_lsp" }, -- LSP completions (highest priority)
+    { name = "luasnip" },  -- snippet completions
+    { name = "buffer" },   -- words from current buffer
+    { name = "path" },     -- filesystem paths
+  }),
+  window = {
+    completion    = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
+})
+-------------------------
+-------------------------
+
+-------------------------
+--- [LSP Setup] ----------
+local lspconfig = require("lspconfig")
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+local servers = { "pyright", "stylua", "typescript-language-server", "lua-language-server", "bash-language-server" }
+
+
+for _, server in ipairs(servers) do
+  vim.lsp.config(server, {
+    capabilities = capabilities,
+    on_attach = on_attach,
+  })
+
+  vim.lsp.enable(server)
+end
+
+
+-- Shared on_attach: runs whenever an LSP attaches to a buffer
+local on_attach = function(_, bufnr)
+  local bopts = { noremap = true, silent = true, buffer = bufnr }
+  vim.keymap.set("n", "gd",         vim.lsp.buf.definition,      bopts) -- go to definition
+  vim.keymap.set("n", "gD",         vim.lsp.buf.declaration,     bopts) -- go to declaration
+  vim.keymap.set("n", "gr",         vim.lsp.buf.references,      bopts) -- list references
+  vim.keymap.set("n", "gi",         vim.lsp.buf.implementation,  bopts) -- go to implementation
+  vim.keymap.set("n", "K",          vim.lsp.buf.hover,           bopts) -- hover docs
+  vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename,          bopts) -- rename symbol
+  vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action,     bopts) -- code actions
+  vim.keymap.set("n", "<leader>f",  vim.lsp.buf.format,          bopts) -- format file
+  vim.keymap.set("n", "[d",         vim.diagnostic.goto_prev,    bopts) -- previous diagnostic
+  vim.keymap.set("n", "]d",         vim.diagnostic.goto_next,    bopts) -- next diagnostic
+  vim.keymap.set("n", "<leader>e",  vim.diagnostic.open_float,   bopts) -- show diagnostic in float
+end
+
+
+-- Diagnostic display config
+vim.diagnostic.config({
+  virtual_text   = true,  -- show errors inline
+  signs          = true,
+  underline      = true,
+  update_in_insert = false,
+  float = { border = "rounded", source = "always" },
 })
 -------------------------
 -------------------------
