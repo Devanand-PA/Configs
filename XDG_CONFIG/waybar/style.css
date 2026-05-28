@@ -1,3 +1,4 @@
+@import url("./wal.css");
 * {
     /* `otf-font-awesome` is required to be installed for icons */
     font-family: JetBrains Mono;
@@ -6,7 +7,7 @@
 }
 
 window#waybar:not(.empty) {
-    background-color: rgba(30, 30, 30, 0.4); /* Add some transparency */
+    background-color: rgba(0,0,0,0.8); /* Add some transparency */
     border-radius : 0px;
     /* You can add other styles here too */
 }
@@ -23,7 +24,7 @@ window#waybar {
 #taskbar button.active {
 	border-bottom: 3px solid white;
     font-size: 14px;
-    background-color : rgba(90,150,90,0.8);
+    background-color : @color1;
 }
 tooltip {
   background: rgba(43, 48, 59, 0.5);
@@ -84,7 +85,7 @@ button {
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 button:hover {
     background: #000000;
-    box-shadow: inset 0 -3px #ffffff;
+    box-shadow: inset 0 -3px @color1;
 }
 
 /* you can set a style on hover for any module like this */
@@ -92,11 +93,12 @@ button:hover {
 }
 
 #workspaces button {
-  border: 2px solid rgba(0, 0, 0, 1);
-    background-color: #000000;
+    border: 2px solid rgba(0, 0, 0, 1);
+    background-color: @color0;
     /*box-shadow: inset 0 -3px #ffffff;*/
     color: #eeeeee;
     opacity:0.8;
+    border-radius: 0px;
 }
 
 #workspaces button:hover {
@@ -104,7 +106,7 @@ button:hover {
 }
 
 #workspaces button.focused, #workspaces button.active {
-    background-color: #339934;
+    background-color: @color1;
     /* box-shadow: inset 0 -3px #ffffff; */
     color: #eeeeee;
 }
@@ -115,7 +117,7 @@ button:hover {
 
 #mode {
     background-color: #64727D;
-    box-shadow: inset 0 -3px #ffffff;
+    box-shadow: inset 0 -3px @color1;
 }
 
 #clock,
@@ -158,11 +160,11 @@ button:hover {
 #clock {
 
   /* border: 2px solid rgba(155, 155, 155, 1); */
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: @color0;
     font-size: 17px;
     font-weight: 600;
     border-radius: 15px;
-    box-shadow: inset 0 -3px #338899;
+    box-shadow: inset 0 -3px @color1;
     color: #ffffff ;
 }
 
@@ -250,7 +252,7 @@ label:focus {
 }
 
 #pulseaudio.muted {
-    background-color: #90b1b1;
+    background-color: @color15;
     color: #2a5c45;
 }
 
@@ -313,14 +315,14 @@ label:focus {
 window#waybar.empty #window{
         padding: 2px 1px;
 
-  background-color: rgba(0,0,0,0); /* color when no window */
+  background-color: @color1; /* color when no window */
       border: 1px;
 }
 
 
 #window {
     border: 4px solid rgba(20,20,20, 1); 
-    background-color : rgba(90,150,90,0.8);
+    background-color : @color1;
     color: #000000;
     font-weight: bold;
     border-radius: 20px;
@@ -339,8 +341,8 @@ window#waybar.empty #window{
 
     color: #eeeeee;
   /* border: 2px solid rgba(155, 155, 155, 1); */
-    background-color: rgba(0, 0, 0, 0.2);
-    box-shadow: inset 0 -3px #338899;
+    background-color: @color0;
+    box-shadow: inset 0 -3px @color1;
     border-radius:20px;
 
 }
@@ -369,7 +371,7 @@ window#waybar.empty #window{
 #mpris {
     background-color: rgba(113,4,4,0.4);
     border-radius : 20px;
-    box-shadow: inset 0 -3px #aa3333;
+    box-shadow: inset 0 -3px @color1;
 }
 
 #mpris.paused {
