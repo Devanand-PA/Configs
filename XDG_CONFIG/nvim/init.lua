@@ -10,6 +10,7 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.spell = true -- enable spellcheck
 vim.opt.undofile = true -- enable undofile
 homedir = os.getenv("HOME")
+vim.opt.termguicolors = true
 -------------------------
 -------------------------
 
@@ -160,3 +161,63 @@ vim.diagnostic.config({
 })
 -------------------------
 -------------------------
+---
+require("lualine").setup({
+				options = {
+					icons_enabled = true,
+					theme = "codedark",
+					-- theme = "catppuccin",
+					-- theme = "tokyonight"
+				},
+				refresh = { -- sets how often lualine should refresh it's contents (in ms)
+					statusline = 1000, -- The refresh option sets minimum time that lualine tries
+					tabline = 1000, -- to maintain between refresh. It's not guarantied if situation
+					winbar = 1000, -- arises that lualine needs to refresh itself before this time
+					-- it'll do it.
+
+					-- Also you can force lualine's refresh by calling refresh function
+					-- like require('lualine').refresh()
+				},
+				-- TABLINE
+				tabline = {
+					lualine_a = {
+						{
+							"buffers",
+							symbols = {
+								modified = " ●", -- Text to show when the buffer is modified
+								alternate_file = "", -- Text to show to identify the alternate file
+								directory = "", -- Text to show when the buffer is a directory
+							},
+							show_filename_only = false,
+							mode = 4,
+						},
+					},
+					lualine_z = { "tabs" },
+				},
+				sections = {
+					lualine_c = { { "filename", path = 3 } },
+				},
+			})
+
+
+
+
+
+
+
+
+
+
+
+require("tokyonight").setup({
+  style = "night", -- storm, moon, night, day
+  transparent = true,
+  on_colors = function(colors)
+    colors.bg = "#000000"        -- main background
+    colors.bg_dark = "#16161e"   -- darker background
+	end,
+
+
+})
+
+vim.cmd.colorscheme("tokyonight")
