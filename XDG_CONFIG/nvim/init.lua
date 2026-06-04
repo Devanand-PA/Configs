@@ -1,3 +1,4 @@
+
 --- [NVIM INIT.LUA FILE] --
 
 -------------------------
@@ -24,6 +25,7 @@ vim.opt.inccommand = "split" -- show the pattern being searched in a separate sp
 vim.opt.cursorline = true	-- highlight the line where a search result is
 vim.opt.hlsearch = true		-- highlight all matches to a search
 vim.opt.signcolumn = "yes"      -- Reserves space for symbols, preventing text from shifting
+
 
 -------------------------
 -------------------------
@@ -62,6 +64,7 @@ keymap("n", "w<Left>", "<C-w><Left>", opts)
 keymap("n", "w<Right>", "<C-w><Right>", opts)
 keymap("n", "w<Up>", "<C-w><Up>", opts)
 keymap("n", "w<Down>", "<C-w><Down>", opts)
+keymap("n", "W", ":lua require(\"fzf-lua\").files()<CR>", opts)
 
 -------------------------
 -------------------------
@@ -198,8 +201,6 @@ require("lualine").setup({
 					lualine_c = { { "filename", path = 3 } },
 				},
 			})
-
-
 
 
 
