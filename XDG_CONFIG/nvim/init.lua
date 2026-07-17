@@ -51,15 +51,15 @@ keymap("n", "<C-Right>", ":vertical resize -3<CR>", opts)
 keymap("n", "<C-Up>", ":resize +3<CR>", opts)
 keymap("n", "<C-Down>", ":resize -3<CR>", opts)
 
-keymap("n", "qr", "q", opts)
-keymap("n", "q", "", opts)
-keymap("n", "qa", ":qa!<CR>", opts)
+-- keymap("n", "qr", "q", opts)
+-- keymap("n", "q", "", opts)
+-- keymap("n", "qa", ":qa!<CR>", opts)
 keymap("n", "<C-t>", ":tabnew<CR>", opts)
-keymap("n", "<M-tab>", ":b#<CR>", opts)
+keymap("n", "<C-tab>", ":b#<CR>", opts)
 keymap("n", "<C-k>", ":bdelete!<CR>", opts)
-keymap("n", "qq", ":bd<CR>", opts)
-keymap("n", "wa", ":w<CR>", opts)
-keymap("n", "wq", ":wq<CR>", opts)
+-- keymap("n", "qq", ":bd<CR>", opts)
+-- keymap("n", "wa", ":w<CR>", opts)
+-- keymap("n", "wq", ":wq<CR>", opts)
 keymap("n", "<S-Right>", ":bnext<CR>", opts)
 keymap("n", "<S-Left>", ":bprevious<CR>", opts)
 keymap("n", "w<Left>", "<C-w><Left>", opts)
@@ -70,7 +70,19 @@ keymap("n", "W", ":lua require(\"fzf-lua\").files()<CR>", opts)
 
 -------------------------
 -------------------------
+vim.pack.add({
+"https://github.com/ibhagwan/fzf-lua",
+"https://github.com/mason-org/mason.nvim",
+"https://github.com/mason-org/mason-lspconfig.nvim",
+"https://github.com/hrsh7th/nvim-cmp",
+"https://github.com/L3MON4D3/LuaSnip",
+"https://github.com/neovim/nvim-lspconfig",
+"https://github.com/hrsh7th/cmp-nvim-lsp",
+"https://github.com/nvim-lualine/lualine.nvim",
+"https://github.com/folke/tokyonight.nvim"
 
+
+})
 
 -------------------------
 --- [Mason Setup] --------
@@ -170,7 +182,7 @@ vim.diagnostic.config({
 require("lualine").setup({
 				options = {
 					icons_enabled = true,
-					theme = "codedark",
+					theme = "tokyonight",
 					-- theme = "catppuccin",
 					-- theme = "tokyonight"
 				},
