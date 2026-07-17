@@ -1,0 +1,20 @@
+#!/bin/sh
+PATH="$HOME/.local/bin:$PATH"
+#xcompmgr -n &
+#/usr/bin/picom --vsync &
+pasystray --notify=none --notify=sink --notify=source --notify=stream --notify=systray_action &
+xset r rate 300 60
+setxkbmap -option caps:swapescape
+# xrdb ~/.Xresources
+#node ~/Notes/server.js &
+#mpris-notifier &
+#/usr/lib/x86_64-linux-gnu/xfce4/notifyd/xfce4-notifyd &
+picom --vsync --backend glx &
+export bg="$(cat $HOME/.cache/wal/wal)"
+#/usr/lib/notification-daemon/notification-daemon &
+dwm_statusbar_c &
+#redshift &
+#xwallpaper --zoom ~/.local/share/wallpapers/wal
+change-background
+#mpris-notifier &
+#xsetroot -solid "#ff0000"

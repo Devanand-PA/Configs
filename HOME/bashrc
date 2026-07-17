@@ -54,6 +54,8 @@ searchquotes() {
 # 	apt search "$@"
 # }
 
+alias W='vi "$(fzf)"'
+
 quotes(){
 printf "\e[0;2;3m"
 cat $(ls $HOME/.scripts/quotes/* | shuf | head -1)
@@ -105,8 +107,7 @@ j() {
 	if [ -d "${new_dir}" ]
 	then
 	command cd "${new_dir}"
-	[ "$(grep "$new_dir" ~/.cd_history)" ] || echo "$new_dir" >> ~/.cd_history
-	echo $new_dir added
+	[ "$(grep "$new_dir" ~/.cd_history)" ] || echo "$new_dir" >> ~/.cd_history && echo $new_dir added
 	else
 	sed "s|^${new_dir}$||g" $HOME/.cd_history  -i
 	sed /^$/d $HOME/.cd_history -i
@@ -138,6 +139,12 @@ pyactivate() {
 	VENV=$(ls ~/envs/python/ | fzf --height=$(( $num_venvs + 2 )))
 	source ~/envs/python/$VENV/bin/activate
 }
+
+bashactivate() {
+	env="$1"
+	bash --init-file ~/envs/bash/${env}.bash
+}
+
 cd() {
 new_dir=""
 ARG_STOP=0
@@ -176,7 +183,7 @@ alias pycalc='python -ic "from numpy import sin , cos , tan , e , pi , log"'
 alias less='less -RM'
 alias tt="cat ~/Documents/Shit/timetable"
 #alias ..='cd .. && echo "$(pwd)" >> ~/.cd_history'
-alias python='python3'
+#alias python='python3'
 alias ls='lsd --color=auto'
 #alias cd='old_dir="$(pwd)" && cd'
 alias pd='find $HOME -type d | fzf '
@@ -217,7 +224,7 @@ fi
 set -o vi
 EDITOR="nvim"
 #source $HOME/envs/python/main/bin/activate
-quotes
+#quotes
 #cat $HOME/.cache/wal/sequences
 #alias sudo=doas
 alias t='unbuffer lsd --tree | bat --pager "less -r"'

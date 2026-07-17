@@ -1,8 +1,12 @@
-#!/bin/sh
-export DENO_INSTALL="/home/devanandpa/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
-
-export "$(dbus-launch)"
-#export PATH="$PATH:$HOME/.local/bin:$HOME/.scripts/bin:$HOME/sourced/android-studio/bin"
-[ "$(tty)" = "/dev/tty1" ] && startx
-. "$HOME/.cargo/env"
+# .bash_profile
+export WM_SETUP_DIR="$HOME/sourced/wm_setup/"
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+fi
+export PATH="$PATH:$HOME/.local/bin:$HOME/.scripts/bin:$HOME/.cargo/bin"
+export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+# User specific environment and startup programs
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
